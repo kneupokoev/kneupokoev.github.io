@@ -1,134 +1,122 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>RUS VTB MB : 4. Платежи и переводы</title>
-        <link rel="stylesheet" href="styles/site.css" type="text/css" />
-        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
+<!-- my-page.html -->
+<script src="https://rawcdn.githack.com/oscarmorrison/md-page/master/md-page.js"></script><noscript>
+    - gg
 
-    <body class="theme-default aui-theme-default">
-        <div id="page">
-            <div id="main" class="aui-page-panel">
-                <div id="main-header">
-                    <div id="breadcrumb-section">
-                        <ol id="breadcrumbs">
-                            <li class="first">
-                                <span><a href="index.html">RUS VTB MB</a></span>
-                            </li>
-                                                    <li>
-                                <span><a href="81567295.html">Описание функционала мобильного приложения ВТБ-Онлайн</a></span>
-                            </li>
-                                                </ol>
-                    </div>
-                    <h1 id="title-heading" class="pagetitle">
-                                                <span id="title-text">
-                            RUS VTB MB : 4. Платежи и переводы
-                        </span>
-                    </h1>
-                </div>
+    | gggg |
+    |:-----|
+    | gggg |
 
-                <div id="content" class="view">
-                    <div class="page-metadata">
-                        
-        
-    
-        
-    
-        
-        
-            Created by <span class='author'> Неупокоев Константин Леонидович</span>, last modified by <span class='editor'> Коекина Майя Алексеевна</span> on авг 02, 2019
-                        </div>
-                    <div id="main-content" class="wiki-content group">
-                    <p><style type='text/css'>/*<![CDATA[*/
-div.rbtoc1565686961396 {padding: 0px;}
-div.rbtoc1565686961396 ul {list-style: disc;margin-left: 0px;}
-div.rbtoc1565686961396 li {margin-left: 0px;padding-left: 0px;}
+    ![mountains](src/images/mockup_budget_step4.png "Пейзаж с горами")
 
-/*]]>*/</style><div class='toc-macro rbtoc1565686961396'>
-<ul class='toc-indentation'>
-<li><a href='#id-4.Платежиипереводы-4.1.ЗапросыотправляемыеМПприпереходенаданнуюформу'>4.1. Запросы отправляемые МП при переходе на данную форму</a>
-<ul class='toc-indentation'>
-<li><a href='#id-4.Платежиипереводы-4.1.1.Запросы,покоторымформируетсясписокоперацийдляформы&quot;Платежиипереводы&quot;:'>4.1.1. Запросы, по которым формируется список операций для формы &quot;Платежи и переводы&quot;:</a></li>
-<li><a href='#id-4.Платежиипереводы-4.1.2.Дополнительныезапросы'>4.1.2. Дополнительные запросы</a></li>
-</ul>
-</li>
-<li><a href='#id-4.Платежиипереводы-FRM4.1Раздел&quot;Платежиипереводы&quot;'>FRM 4.1 Раздел &quot;Платежи и переводы&quot;</a></li>
-</ul>
-</div></p><h1 id="id-4.Платежиипереводы-4.1.ЗапросыотправляемыеМПприпереходенаданнуюформу">4.1. Запросы отправляемые МП при переходе на данную форму</h1><h2 id="id-4.Платежиипереводы-4.1.1.Запросы,покоторымформируетсясписокоперацийдляформы&quot;Платежиипереводы&quot;:">4.1.1. Запросы, по которым формируется список операций для формы &quot;Платежи и переводы&quot;:</h2><ol><li>Список платежей для раздела &quot;<strong>Новый платеж</strong>&quot;:<br/><ol><li>Запрос CategorizedOperationsRequest, где OperationTypeMto с id=PAYMENT; <span style="color: rgb(51,51,51);">crossRegional=1 (<span style="color: rgb(51,51,51);">чтобы получать список поставщиков услуг по всем регионам и далее </span><span style="color: rgb(51,51,51);">фильтровать</span><span style="color: rgb(51,51,51);"> его на приложении, а не перезапрашивать).</span></span></li><li>Ответ DataListResponse с OperationCategoryMto содержащими список из OperationInfoMto.</li></ol></li><li>Список переводов для раздела &quot;<strong>Новый перевод</strong>&quot;:<br/><ol><li>Запрос CategorizedOperationsRequest, где OperationTypeMto с id=TRANSFER; <span style="color: rgb(51,51,51);">crossRegional=1 (</span><span style="color: rgb(51,51,51);">чтобы получать список операций по всем регионам сразу</span><span style="color: rgb(51,51,51);">).</span></li><li>Ответ DataListResponse с OperationCategoryMto содержащими список из OperationInfoMto.</li></ol></li><li>Список шаблонов для раздела &quot;<strong>Избранное и автоплатежи</strong>&quot;:<br/><ol><li>Запрос UserTemplatesRequest.</li><li>Ответ DataListResponse из UserTemplateMto с данными по операции в OperationInfoMto.</li></ol></li><li>Список автоплатежей для раздела &quot;<strong>
+    <p align="center">Экранная спецификация формы FRM 4.5.6</p>
 
-                        <?php include "markdown2.md";?>
+    **Экранная спецификация формы FRM 4.5.6**
+
+    | Элемент | Комментарий |
+    | --- | --- |
+    | Заголовок | <p><a href="https://support.bsc-ideas.com/confl/pages/viewpage.action?pageId=81567315#id-9.%D0%9E%D0%B1%D1%89%D0%B8%D0%B5%D1%82%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-title" rel="nofollow">Стандартный для приложения заголовок</a></p><p>Значение заголовка &quot;Платежи и переводы&quot; (хранится в коде приложения).</p> |
+    | Строка поиска | Стандартная для приложения строка поиска<br>Текст подсказки выровнен по центру.Лупа прижата справа к тексту (на android лупы нет).При нажатии на строку происходит переход к 4.4. Общая форма поиска. |
+    | Раздел "Избранное и автоплатежи" | Название раздела содержаться в коде приложения и имеет значение "Избранное и автоплатежи"Справа от названия раздела отображается кнопка "все", при нажатии на которую осуществляется переход к форме раздела 4.1 Избранное и автоплатежи (Мои шаблоны и автоплатежи)Блок с элементами списка содержит данные из запросов шаблонов - UserTemplatesRequest и автоплатежей - RegularOperationsRequest. Представляет собой горизонтальную полоску с возможностью прокрутки свайпом.Блок с элементами состоит из:Плажка "Автоплатежи"Отображается всегда первой , независимо от наличия автоплатежей (элементов списка в ответе на запрос RegularOperationsRequest).Содержит иконку (хранится в приложении) и название "Автоплатежи" (в коде приложения).При нажатии осуществляется переход к форме "Автоплатежи" Единая плитка с шаблонами платежейОтображается при наличии созданных пользователем шаблонов платежей (элементов списка в ответе на запрос UserTemplatesRequest ).Каждый элемент списка состоит из:Картинки, которая хранится на стороне МП и выбирается из всех картинок в соответствии с полученными данными в ответе от СИ (см. функциональное требование п.2).Звездочка, которая отображается слева снизу у картинки.Название под картинкой, которое берется из следующих полей:Для TransactionMto из поля details.Для OrderMto из поля description.При нажатии на конкретный элемент происходит старт соответствующей операции. |
+    | Раздел "Частые" (старое название "Последние") | (отключено на Минерве, поэтому на МП приходит пустой ответ и блок не отображается)Располагается между текущими блоками "Избранное и автоплатежи" и "Новый платеж"Название раздела содержаться в коде приложения и имеет значение "Частые"Справа от названия раздела отображается кнопка "все", при нажатии на которую осуществляется переход к форме раздела 4.5 Частые (отключено).Блока с операциями представляет собой список элементов из ответа на запрос GetFrequentClientOperationsRequest. По умолчанию отображается количество элементов равное количеству полученному в системном параметре sharedSettings.FrequentClientOperation.quantity. В порядке, в котором они получены от сервера (вся сортировка происходит на Минерве).Если на запрос ся в коде приложения и имеет значение "Новый платеж"Справа от названия > раздела отображается кнопка "все", при нажатии на которую осуществляется переход
+    к
+
+    > 1. форме
+    > >fkk
+    > > > 2. раздела 4.2 Новый платеж (оплата услуг)Элементы раздела отображаются в
+    >
+
+    соответствии с функциональными требованиями п. 1  |
+    | 1Р1аздел "Новый перевод" (старое название "Перевод") | Название раздела содержаться в коде приложения и имеет значение "Новый перевод"Справа от названия раздела отображается кнопка "все", при нажатии на которую осуществляется переход к форме раздела 4.3 Новый переводЭлементы раздела отображаются в соответствии с функциональными требованиями п. 1  |
+
+    : Таблица с многоабзацевыми ячейками {#tbl:mytablegrid}
+
+    +---------------+---------------+--------------------+
+    | Fruit         | Price         | Advantages         |
+    +===============+===============+====================+
+    | Bananas       | $1.34         | - built-in wrapper |
+    |               |               | - bright color     |
+    +---------------+---------------+--------------------+
+    | Oranges       | $2.10         | - cures scurvy     |
+    |               |               | - tasty            |
+    +---------------+---------------+--------------------+
 
 
-                        Избранное и автоплатежи</strong>&quot;:<br/><ol><li>Запрос RegularOperationsRequest.</li><li>Ответ RegularOperationsResponse из RegularOperationMto с данными по операции в OperationInfoMto.</li></ol></li><li>Список частых операций для раздела &quot;<strong>Частые</strong>&quot; <span style="color: rgb(255,0,0);">(отключено на Минерве, поэтому на МП приходит пустой ответ и блок не отображается)</span><ol><li>Запрос <span style="color: rgb(51,51,51);">GetFrequentClientOperationsRequest (поля пустые).</span></li><li><span style="color: rgb(51,51,51);">Ответ GetFrequentClientOperationsResponse из FrequentClientOperationMto.</span></li><li><span style="color: rgb(51,51,51);">Добавлена обработка кеш-токена </span>FrequentClientOperations<strong>.</strong></li></ol></li></ol><p><span style="color: rgb(51,51,51);">Если на какой либо запрос пришла ошибка, то появится всплывающее окно с текстом ошибки и после его закрытия отобразится форма и в блоке где была ошибка будет пусто.</span></p><h2 id="id-4.Платежиипереводы-4.1.2.Дополнительныезапросы">4.1.2. Дополнительные запросы</h2><ol><li>Запрос на получения списка регионов <strong>GetRegionsRequest</strong>, данные из ответа которого используется для отображения данных в <a href="https://support.bsc-ideas.com/confl/pages/viewpage.action?pageId=81567315#id-9.%D0%9E%D0%B1%D1%89%D0%B8%D0%B5%D1%82%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-region" rel="nofollow">блоке выбора региона</a>, на <a href="81584411.html">9.2.6 Форма выбора региона</a>. При работе с данным запросом <span style="color: rgb(51,51,51);"> учитывается работа с <a href="https://support.bsc-ideas.com/confl/pages/viewpage.action?pageId=81567335" rel="nofollow">кеш-токеном</a> Regions. </span><span style="color: rgb(51,51,51);"> </span></li></ol><p><span class="confluence-anchor-link" id="id-4.Платежиипереводы-FRM4.1"></span></p><h1 id="id-4.Платежиипереводы-FRM4.1Раздел&quot;Платежиипереводы&quot;">FRM 4.1 Раздел &quot;Платежи и переводы&quot;</h1><p style="text-align: center;"><span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" src="attachments/81567305/81588362.png" data-image-src="attachments/81567305/81588362.png" data-unresolved-comment-count="0" data-linked-resource-id="81588362" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-4-23_14-24-25.png" data-base-url="https://support.bsc-ideas.com/confl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="81567305" data-linked-resource-container-version="24"></span> <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image" height="400" src="attachments/81567305/81588363.png" data-image-src="attachments/81567305/81588363.png" data-unresolved-comment-count="0" data-linked-resource-id="81588363" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-4-23_14-24-56.png" data-base-url="https://support.bsc-ideas.com/confl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="81567305" data-linked-resource-container-version="24"></span></p><p style="text-align: center;"><strong><strong style="text-align: center;">Рисунок 4.1.1. </strong>Экран раздела &quot;Платежи и переводы&quot;</strong></p><p style="text-align: left;" align="center"><strong>Таблица 4.1.1. Экранная спецификация формы &quot;<strong>Платежи и переводы</strong>&quot;</strong></p><div class="table-wrap"><table class="wrapped confluenceTable"><thead><tr><td class="highlight-grey confluenceTd" data-highlight-colour="grey"><p><strong>Элемент</strong></p></td><td class="highlight-grey confluenceTd" data-highlight-colour="grey"><p><strong>Комментарий</strong></p></td></tr><tr><td colspan="1" class="confluenceTd">Заголовок</td><td colspan="1" class="confluenceTd"><p><a href="https://support.bsc-ideas.com/confl/pages/viewpage.action?pageId=81567315#id-9.%D0%9E%D0%B1%D1%89%D0%B8%D0%B5%D1%82%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-title" rel="nofollow">Стандартный для приложения заголовок</a></p><p>Значение заголовка &quot;Платежи и переводы&quot; (хранится в коде приложения).</p></td></tr><tr><td colspan="1" class="confluenceTd"><span>Строка поиска</span></td><td colspan="1" class="confluenceTd"><p><a href="https://support.bsc-ideas.com/confl/pages/viewpage.action?pageId=81567315#id-9.%D0%9E%D0%B1%D1%89%D0%B8%D0%B5%D1%82%D1%80%D0%B5%D0%B1%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-search" rel="nofollow">Стандартная для приложения строка поиска</a></p><ol><li>Текст подсказки выровнен по центру.</li><li>Лупа прижата справа к тексту (на android лупы нет).</li><li>При нажатии на строку происходит переход к <a href="81588244.html">4.4. Общая форма поиска</a>.</li></ol></td></tr><tr><td colspan="1" class="confluenceTd">Раздел &quot;Избранное и автоплатежи&quot;</td><td colspan="1" class="confluenceTd"><ol><li>Название раздела <span>содержаться в коде приложения и имеет значение &quot;<span>Избранное и автоплатежи</span>&quot;</span></li><li><span>Справа от названия раздела отображается кнопка &quot;все&quot;, при нажатии на которую осуществляется переход к форме раздела <a href="81567367.html">4.1 Избранное и автоплатежи (Мои шаблоны и автоплатежи)</a></span></li><li>Блок с элементами списка содержит данные из запросов шаблонов - UserTemplatesRequest и автоплатежей - RegularOperationsRequest. Представляет собой <span>горизонтальную полоску с возможностью </span><span style="color: rgb(34,34,34);">прокрутки свайпом.</span></li><li><span>Блок с элементами состоит из</span>:<ol><li>Плажка &quot;Автоплатежи&quot;<ol><li><span>Отображается всегда первой , независимо от наличия автоплатежей (элементов списка в ответе на запрос </span><span>RegularOperationsRequest</span><span>).</span></li><li><span>Содержит иконку (хранится в приложении) и название &quot;Автоплатежи&quot; (в коде приложения).</span></li><li><span>При нажатии осуществляется переход к форме &quot;<a href="https://support.bsc-ideas.com/confl/pages/viewpage.action?pageId=81567367#id-4.1%D0%98%D0%B7%D0%B1%D1%80%D0%B0%D0%BD%D0%BD%D0%BE%D0%B5%D0%B8%D0%B0%D0%B2%D1%82%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B5%D0%B6%D0%B8(%D0%9C%D0%BE%D0%B8%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D1%8B%D0%B8%D0%B0%D0%B2%D1%82%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B5%D0%B6%D0%B8)-4.1.2%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%22%D0%90%D0%B2%D1%82%D0%BE%D0%BF%D0%BB%D0%B0%D1%82%D0%B5%D0%B6%D0%B8%22" rel="nofollow">Автоплатежи</a>&quot; </span></li></ol></li><li>Единая плитка с шаблонами платежей<ol><li>Отображается при наличии созданных пользователем шаблонов платежей (элементов списка в ответе на запрос UserTemplatesRequest ).</li><li>Каждый элемент списка состоит из:<ol><li>Картинки, которая <span style="color: rgb(34,34,34);">хранится на стороне МП и выбирается из всех картинок в соответствии с полученными данными в ответе от СИ (см. <a href="#id-4.Платежиипереводы-FRM4.1FR">функциональное требование п.2</a>).</span></li><li>Звездочка, которая отображается слева снизу у картинки.</li><li>Название под картинкой, которое берется из следующих полей:<ol><li><p>Для TransactionMto из поля details.</p></li><li><p>Для OrderMto из поля description.</p></li></ol></li></ol></li><li><span>При нажатии на конкретный элемент происходит старт соответствующей операции.</span></li></ol></li></ol></li></ol></td></tr><tr><td colspan="1" class="confluenceTd">Раздел &quot;Частые&quot; (старое название &quot;Последние&quot;)</td><td colspan="1" class="confluenceTd"><p><span style="color: rgb(255,0,0);">(отключено на Минерве, поэтому на МП приходит пустой ответ и блок не отображается)</span></p><ol style="text-align: left;margin-left: 0.0px;"><li>Располагается между текущими блоками &quot;Избранное и автоплатежи&quot; и &quot;Новый платеж&quot;</li><li>Название раздела содержаться в коде приложения и имеет значение &quot;Частые&quot;</li><li><span>Справа от названия раздела отображается кнопка &quot;все&quot;, при нажатии на которую осуществляется переход к форме раздела <a href="90080417.html">4.5 Частые (отключено)</a>.</span></li><li>Блока с операциями представляет собой список элементов из ответа на <span>запрос GetFrequentClientOperationsRequest. </span><br/><ol style="margin-left: 0.0px;"><li><span>По умолчанию отображается количество элементов равное количеству полученному в системном параметре sharedSettings.FrequentClientOperation.quantity. В порядке, в котором они получены от сервера (вся сортировка происходит на Минерве).</span><span><span style="color: rgb(255,0,0);"><br/></span></span></li><li><span>Если на запрос GetFrequentClientOperationsRequest не пришло операций - то блок &quot;Частые&quot; не отображается. </span></li></ol></li><li>Отображение и функционала элементов списка соответствует отображению на форме <a href="https://support.bsc-ideas.com/confl/pages/viewpage.action?pageId=90080417" rel="nofollow">FRM4.5.1 Форма раздела &quot;Частые&quot;</a>.</li></ol></td></tr><tr><td colspan="1" class="confluenceTd">Раздел &quot;Новый платеж&quot; (старое название &quot;Оплата услуг&quot;)</td><td colspan="1" class="confluenceTd"><ol><li>Название раздела содержаться в коде приложения и имеет значение &quot;Новый платеж&quot;</li><li>Справа от названия раздела отображается кнопка &quot;все&quot;, при нажатии на которую осуществляется переход к форме раздела <a href="81567377.html">4.2 Новый платеж (оплата услуг)</a></li><li>Элементы раздела отображаются в соответствии с <a href="#id-4.Платежиипереводы-FRM4.1FR">функциональными требованиями п. 1</a> </li></ol></td></tr><tr><td colspan="1" class="confluenceTd">Раздел &quot;Новый перевод&quot; (старое название &quot;Перевод&quot;)</td><td colspan="1" class="confluenceTd"><ol><li>Название раздела содержаться в коде приложения и имеет значение &quot;Новый перевод&quot;</li><li>Справа от названия раздела отображается кнопка &quot;все&quot;, при нажатии на которую осуществляется переход к форме раздела <a href="81567379.html">4.3 Новый перевод</a></li><li>Элементы раздела отображаются в соответствии с <a href="#id-4.Платежиипереводы-FRM4.1FR">функциональными требованиями п. 1</a> </li></ol></td></tr></thead></table></div><p><span class="confluence-anchor-link" id="id-4.Платежиипереводы-FRM4.1FR"></span></p><p><strong>Функциональные требования</strong></p><div class="table-wrap"><table class="wrapped confluenceTable"><colgroup><col/><col/></colgroup><tbody><tr><th class="confluenceTh">№</th><th class="confluenceTh">Требование</th></tr><tr><td class="confluenceTd"><div class="content-wrapper">1</div></td><td class="confluenceTd"><div class="content-wrapper"><ol><li>Блок с элементами раздела представляет собой горизонтальную полоску с возможностью <span style="color: rgb(34,34,34);">прокрутки свайпом:</span><ol><li><span style="color: rgb(34,34,34);"><span style="color: rgb(34,34,34);">В разделе &quot;Новый платеж&quot; отображаются элементы <span>OperationCategoryMto</span> из запроса <span>CategorizedOperationsRequest, <span> где OperationTypeMto с id=PAYMENT.</span></span></span></span></li><li><span style="color: rgb(34,34,34);"><span style="color: rgb(34,34,34);"><span><span><span style="color: rgb(34,34,34);">В разделе </span>&quot;Новый перевод&quot; <span style="color: rgb(34,34,34);">отображаются элементы </span><span style="color: rgb(34,34,34);">OperationCategoryMto</span><span style="color: rgb(34,34,34);"> из запроса </span><span style="color: rgb(34,34,34);">CategorizedOperationsRequest, где OperationTypeMto с id=<span>TRANSFER</span>.</span></span></span></span></span></li></ol></li><li><span style="color: rgb(34,34,34);">Каждый элемент содержит: </span><br/><ol><li><p><span style="color: rgb(34,34,34);">Наименование из поля name в </span>OperationCategoryMto.</p><ol><li>Располагается максимум на 3х строчках.</li><li>Если завнаие длинное, то в конце оно обрезается и ставится троеточие.</li></ol></li><li><span style="color: rgb(34,34,34);">Картинка хранится на стороне МП и выбирается из всех картинок в соответствии с маппингом значения параметра <span style="color: rgb(34,34,34);">categoryId из OperationInfoMto <strong>первой операции в списке</strong> в <span>OperationCategoryMto</span> и названиями картинок</span> (с<span style="color: rgb(34,34,34);">м. </span><a href="#id-4.Платежиипереводы-FRM4.1FR">функциональные требования п.3</a><span style="color: rgb(34,34,34);">)</span></span><ol><li>Если в категории содержится <strong>только одна</strong> операция, то отображается иконка и название категории (и на ios и на android (доработка в скрам команде
-<span class="jira-issue" data-jira-key="P20009346-6958" >
-                    <a href="https://support.bsc-ideas.com/jira/browse/P20009346-6958?src=confmacro" class="jira-issue-key"><img class="icon"
-                                                                                      src="https://support.bsc-ideas.com/jira/secure/viewavatar?size=xsmall&amp;avatarId=18086&amp;avatarType=issuetype"/>P20009346-6958</a>
-                            -
-            <span class="summary">android Изменение логики отображения названий категорий/операций на форме &quot;Платежи и переводы&quot;</span>
-                                                <span class="aui-lozenge aui-lozenge-subtle             aui-lozenge-success
-     jira-macro-single-issue-export-pdf">Решенные</span>
-                </span>
-)).</li><li><span style="color: rgb(34,34,34);">Для части категорий реализовано новое определение картинок по параметру <span style="color: rgb(51,51,51);">reference в <span>OperationCategoryMto</span> (</span>т.к. <span style="color: rgb(34,34,34);">categoryId изменяемый параметры, и в зависимости от стендов в нем могут приходить разные значения).</span></span><ol><li><span style="color: rgb(34,34,34);"><span style="color: rgb(34,34,34);"><span style="color: rgb(51,51,51);">reference = TransferClients, то отображается иконка <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail confluence-external-resource" width="30" src="http://intra.b-s-c.ru/wiki/download/thumbnails/70031084/image2018-12-12+10%3A10%3A47.png?version=1&amp;modificationDate=1544598264000" data-image-src="http://intra.b-s-c.ru/wiki/download/thumbnails/70031084/image2018-12-12+10%3A10%3A47.png?version=1&amp;modificationDate=1544598264000"></span></span></span></span></li><li><span style="color: rgb(34,34,34);"><span style="color: rgb(51,51,51);"><span style="color: rgb(51,51,51);"><span style="color: rgb(51,51,51);">reference=TransferOrganizations, то отображается <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="30" src="attachments/81567305/81585952.png" data-image-src="attachments/81567305/81585952.png" data-unresolved-comment-count="0" data-linked-resource-id="81585952" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-4-16_11-19-34.png" data-base-url="https://support.bsc-ideas.com/confl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="81567305" data-linked-resource-container-version="24"></span></span></span><span style="color: rgb(51,51,51);"><br/></span></span></span></li></ol></li><li><span style="color: rgb(34,34,34);">Если сопоставление не определено, то подставляется стандартна иконка:</span><ol><li><span style="color: rgb(34,34,34);">ios <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="40" src="attachments/81567305/81585940.png" data-image-src="attachments/81567305/81585940.png" data-unresolved-comment-count="0" data-linked-resource-id="81585940" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-4-16_10-47-49.png" data-base-url="https://support.bsc-ideas.com/confl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="81567305" data-linked-resource-container-version="24"></span></span></li><li><span style="color: rgb(34,34,34);">android <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="30" src="attachments/81567305/81585936.png" data-image-src="attachments/81567305/81585936.png" data-unresolved-comment-count="0" data-linked-resource-id="81585936" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-4-16_10-42-46.png" data-base-url="https://support.bsc-ideas.com/confl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="81567305" data-linked-resource-container-version="24"></span></span></li></ol></li></ol></li></ol></li><li>При нажатии на конкретный элемент происходят следующие проверки:<br/><span style="color: rgb(51,51,51);">В ответе на запрос списка операций с категориями (CategorizedOperationsRequest) у выбранной категории OperationCategoryMto проверяется параметр </span>HasServices<strong>.</strong><ol><li>Если HasServices=true (=1), то<ol><li style="list-style-type: none;">С МП запрашиваются сервисы с помощью ServiceListRequest<strong>:</strong><br/><ol><li><span>type = OperationCategoryMto - категория (на Минерву уйдет ActionCategory)</span></li><li><span>id = id в OperationCategoryMto - id категории</span></li></ol></li><li>В ответе ServiceListResponse ищем доступный (enabled=true(=1)) сценарий с id, содержащий &quot;opSrv;TransferToPersonCompositeScenario&quot;  (цифры в конце не учитываются)</li></ol><ol><li style="list-style-type: none;background-image: none;"><ol><li style="list-style-type: none;">Если доступный сценарий есть, то запускаем соответствующую операцию и в<span style="color: rgb(51,51,51);"> случае получения успешного ответа от СИ осуществляем переход к новой операции</span>:<br/><ol><li><span>inActivator id=opSrv;TransferToPersonCompositeScenario;1 type=ServiceInfoMto<br/></span></li><li><span>inInitObject id=(id категории перевода людям) classType=OperationCategoryMto (на Минерву уйдет ActionCategory)</span></li></ol></li><li>Если сценария нет или он не доступен (enabled=false(=0)), то см. проверку по п.b.</li></ol></li></ol></li><li>Если HasServices=false (=0), то сервисы не доступны, то проверяется наличие вложенных в категорию операций:<ol><li>Если в категории содержится несколько операций, то <span>осуществляется переход к экрану со списком операций по разделу <span>(см. </span><a href="81567379.html">4.3 Новый перевод</a><span> и </span><a href="81567377.html">4.2 Новый платеж (оплата услуг)</a><span>).</span></span></li><li>Если в категории содержится только одна операция, то при нажатии на категорию происходит сразу запуск вложенной операции.</li></ol></li></ol></li></ol></div></td></tr><tr><td colspan="1" class="confluenceTd">2</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p><span style="color: rgb(34,34,34);">Картинки для операций определяются следующим образом:</span></p><ol><li><span style="color: rgb(34,34,34);">Для OrderMto МП проверяет параметр id из OperationInfoMto.</span></li><li><span style="color: rgb(34,34,34);">Для TransactionMto:</span><br/><ol><li><span style="color: rgb(34,34,34);">Если в параметре order есть данные по OrderMto, то МП проверяет параметр id из OperationInfoMto.</span></li><li><span style="color: rgb(34,34,34);">Если нет OrderMto, то проверяется тип транзакции:</span><br/><ol><li><span style="color: rgb(34,34,34);">Для CardTransactionMto берется иконка history _icon_card.</span></li><li><span style="color: rgb(34,34,34);">Для AccountTransactionMto проверяется значение sum в параметре transactionAmount:</span><br/><ol><li><span style="color: rgb(34,34,34);">если sum&gt;0 то берется иконка history_icon_in (стрелка вниз);</span></li><li><span style="color: rgb(34,34,34);">иначе history_icon_out (стрелка вверх).</span></li></ol></li></ol></li></ol></li><li><span style="color: rgb(34,34,34);">После определения id по текущему мапингу подставляется соответствующая картинка (см. <a href="http://support.bsc-ideas.com" class="external-link" rel="nofollow">функциональные требования п.3</a>).</span></li><li><span style="color: rgb(34,34,34);">Если сопоставление не определено, то подставляется стандартна иконка:</span><ol><li><span style="color: rgb(34,34,34);">ios <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="40" src="attachments/81567305/81585940.png" data-image-src="attachments/81567305/81585940.png" data-unresolved-comment-count="0" data-linked-resource-id="81585940" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-4-16_10-47-49.png" data-base-url="https://support.bsc-ideas.com/confl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="81567305" data-linked-resource-container-version="24"></span>check_icon_default</span></li><li><span style="color: rgb(34,34,34);">android <span class="confluence-embedded-file-wrapper confluence-embedded-manual-size"><img class="confluence-embedded-image confluence-thumbnail" width="40" src="attachments/81567305/81589807.png" data-image-src="attachments/81567305/81589807.png" data-unresolved-comment-count="0" data-linked-resource-id="81589807" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="image2019-4-26_10-31-10.png" data-base-url="https://support.bsc-ideas.com/confl" data-linked-resource-content-type="image/png" data-linked-resource-container-id="81567305" data-linked-resource-container-version="24"></span></span></li></ol></li></ol></div></td></tr><tr><td colspan="1" class="confluenceTd">3</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p><span>Пример </span><span style="color: rgb(34,34,34);">сопоставления id и названий картинок (если нужен актуальный, то нужно запрашивать у разработчиков):</span></p><ol><li><span style="color: rgb(34,34,34);">Для категорий <a href="attachments/81567305/81568955.txt" data-linked-resource-id="81568955" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="categories.txt" data-nice-type="Text File" data-linked-resource-content-type="text/plain" data-linked-resource-container-id="81567305" data-linked-resource-container-version="24">categories.txt</a></span></li><li>Для операций <a href="attachments/81567305/81568954.txt" data-linked-resource-id="81568954" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="operations.txt" data-nice-type="Text File" data-linked-resource-content-type="text/plain" data-linked-resource-container-id="81567305" data-linked-resource-container-version="24">operations.txt</a></li></ol></div></td></tr><tr><td colspan="1" class="confluenceTd">4</td><td colspan="1" class="confluenceTd"><div class="content-wrapper"><p>Размеры и формат картинок для операций/категорий/шаблонов:</p><p>ios - в формате png; рамзеры: 80х80px, 160х160<span>px</span>, 240х240<span>px</span> (пример иконки <a href="attachments/81567305/81587998.zip" data-linked-resource-id="81587998" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="ериц.zip" data-nice-type="Zip Archive" data-linked-resource-content-type="application/zip" data-linked-resource-container-id="81567305" data-linked-resource-container-version="24">ериц.zip</a>)</p><p>android - в формате png: размеры 2х видов (<span>маленькие иконки для списка операций и большие иконки для шаблонов</span>) в форматах <span>hdpi, mdpi, xdpi, xxdpi (</span>т.е. всего 8 картинок , пример <a href="attachments/81567305/81588003.zip" data-linked-resource-id="81588003" data-linked-resource-version="1" data-linked-resource-type="attachment" data-linked-resource-default-alias="мосэнергосбыт.zip" data-nice-type="Zip Archive" data-linked-resource-content-type="application/zip" data-linked-resource-container-id="81567305" data-linked-resource-container-version="24">мосэнергосбыт.zip</a>):</p><p><br/></p></div></td></tr></tbody></table></div>
-                    </div>
+    ------------------- --------------- ------------------------
+    1
+    `TEMPERATURE`  Температураэ  ёё вц
+    1) один
+    2) жвю
+    12  ![mountains](https://im0-tub-ru.yandex.net/i?id=914d38c1e1346c5955cf124a03e47964&n=13 "Пейзаж с горами")
 
-                                        <div class="pageSection group">
-                        <div class="pageSectionHeader">
-                            <h2 id="attachments" class="pageSectionTitle">Attachments:</h2>
-                        </div>
 
-                        <div class="greybox" align="left">
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81568951.png">image2019-2-26_17-25-1.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81568954.txt">operations.txt</a> (text/plain)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81568955.txt">categories.txt</a> (text/plain)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81574700.bmpr">BalsamiqProject_81567305.bmpr</a> (application/octet-stream)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81574699.png">balsamiq_wireframe_2278E287-509B-183B-1098-2EC38DDDB7D8_Master.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81574697.bmpr">BalsamiqProject_81567305.bmpr</a> (application/octet-stream)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81585936.png">image2019-4-16_10-42-46.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81585940.png">image2019-4-16_10-47-49.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81585952.png">image2019-4-16_11-19-34.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81587998.zip">ериц.zip</a> (application/zip)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81588003.zip">мосэнергосбыт.zip</a> (application/zip)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81588362.png">image2019-4-23_14-24-25.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81588363.png">image2019-4-23_14-24-56.png</a> (image/png)
-                                <br/>
-                                                            <img src="images/icons/bullet_blue.gif" height="8" width="8" alt=""/>
-                                <a href="attachments/81567305/81589807.png">image2019-4-26_10-31-10.png</a> (image/png)
-                                <br/>
-                                                    </div>
-                    </div>
-                    
-                                                      
-                </div>             </div> 
-            <div id="footer" role="contentinfo">
-                <section class="footer-body">
-                    <p>Document generated by Confluence on авг 13, 2019 11:02</p>
-                    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
-                </section>
-            </div>
-        </div>     </body>
-</html>
+
+    Элементы орбиты Меркурия: $\ln(a)$,
+    $\sin i\cdot\cos(\Omega)$, $\sin i\cdot\sin(\Omega)$,
+    $e\cdot\cos(\varpi)$, $e\cdot\sin(\varpi)$, $l$,
+    где $a$ — большая полуось, $i$ — наклон орбиты,
+    $\Omega$ — долгота восходящего узла, $e$ — эксцентриситет,
+    $\varpi$ — долгота перицентра, $l$ — средняя долгота
+    1. ddd
+    123  `HUMIDITY`     Относительная влажность
+    999  `WAVE_LENGTH`  Длина волны
+    ------------------- ------------------------
+
+    - ee
+    - llp
+
+    ## Таблица с ячейками из многих строк
+
+    --------------------------------------------------------------------------------
+    Номер        Описание параметра
+    -----------  ------------------------------------------------------------------
+    188-190  Углы $\varepsilon_x$, $\varepsilon_y$ и $\varepsilon_z$ ориентации эфемерид в ICRS
+
+    201-700  Гравитационные параметры ($Gm$) планет и астероидов
+
+    701-706  Элементы орбиты Меркурия: $\ln(a)$,
+    $\sin i\cdot\cos(\Omega)$, $\sin i\cdot\sin(\Omega)$,
+    $e\cdot\cos(\varpi)$, $e\cdot\sin(\varpi)$, $l$,
+    где $a$ — большая полуось, $i$ — наклон орбиты,
+    $\Omega$ — долгота восходящего узла, $e$ — эксцентриситет,
+    $\varpi$ — долгота перицентра, $l$ — средняя долгота
+
+    707  $\dot{a}/a$ Меркурия
+
+
+
+
+    efb
+
+    -------     ------ ----------   -------
+    12     12        12             12
+    123     123       123           123
+    1     1          1              1
+    -------     ------ ----------   -------
+
+    ## Таблица с ячейками из многих абзацев
+
+    : Таблица с многоабзацевыми ячейками {#tbl:mytablegrid}
+
+    +-------------------+---------------+---------------------+
+    | Колонка 1 (R)     | Колонка 2 (C) | Колонка 3   (L)     |
+    +==================+=============+====================+
+    | Просто абзац      | Просто текст  | - Маркированный     |
+    | текста на         |               | - список с длинным текстом, не помещающимся на одну строку |
+    | несколько строк.  |               |     i. Вложенный,   |
+    |                   |               |     i. Нумерованный,|
+    | И за ним ещё один.|               |     i. Список.      |
+    |                   |               | - Пункт списка с формулой внутри: $\int_{a}^{b} x^2 dx$. |
+    +-------------------+---------------+---------------------+
+    | Отдельная формула:|               | 1. `НУМЕРОВАННЫЙ`   |
+    |                   |               | 2. $s+\pi+sok$      |
+    |$e^{\pi i} + 1 = 0$|               |                     |
+    |                   |               | :::{custom-style="Normal"}
+    | 1. Разреженный,   |               | Новый абзац текста после нумерованного списка.
+    |                   |               | Ему принудительно выставлен стиль «Normal» (Обычный); из-за внутренних особенностей Pandoc |
+    | 2. Нумерованный,  |               | всем абзацам ячейки таблицы, где есть компактные списки, присваивается по умолчанию стиль «Compact». |
+    |                   |               | Различие в данном случае только в ненулевом промежутке между этим абзацем и предыдущим списком. |
+    | 3. Список.        |               | :::                 |
+    +-------------------+---------------+---------------------+
+
+    ## Таблицы без номера
+
