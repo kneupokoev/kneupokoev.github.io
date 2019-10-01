@@ -1,11 +1,11 @@
 <?php
 
 //Отредактировать переменные
-$site_name_and_path = 'markdown.belursus.info/w1php/'; //Доменное имя сайта (и путь к каталогу с основным скриптом)
+$site_name_and_path = 'https://kneupokoev.github.io/'; //Доменное имя сайта (и путь к каталогу с основным скриптом)
 $main_title = 'WEB1M2PHP: сайт-визитка на "Маркдаун"'; //Основное заглавие сайта
 
 //Отредактировать переменные по необходжимости
-$start_document = "START.md";
+$start_document = "markdown2.md";
 $default_page = 'index.php';
 
 
